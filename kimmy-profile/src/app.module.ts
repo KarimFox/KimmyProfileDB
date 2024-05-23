@@ -5,7 +5,15 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [ConfigModule.forRoot({envFilePath:'env',isGlobal:true}),MongooseModule.forRoot(process.env.FOX_Url)],
+  imports: [
+    ConfigModule.forRoot({
+      envFilePath: '.env',
+      isGlobal: true,
+    }),
+    MongooseModule.forRoot(process.env.FOX_Url, {
+      connectionName: 'cats',
+    })],
+
   controllers: [AppController],
   providers: [AppService],
 })
